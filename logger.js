@@ -12,37 +12,53 @@ const logFormat = winston.format.combine(
     winston.format.json()
 );
 
-// Create a logger instance
+// Create logs directory if it doesn't exist
+const logDir = 'logs';
+
+// Configure daily rotate file transport
+const fileRotateTransport = new DailyRotateFile({
+    filename: path.join(logDir, 'stremio-addon-manager-%DATE%.log'),
+    datePattern: 'YYYY-MM-DD',
+    maxSize: '20m',
+    maxFiles: '14d',
+    createSymlink: true,
+    symlinkName: 'current.log'
+});
+
+// Create logger instance
 const logger = winston.createLogger({
     level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
     format: logFormat,
     transports: [
-        // Console transport for Vercel environment
-        new winston.transports.Console({
+        // Write all logs with level 'error' and below to error.log
+        new winston.transports.File({ 
+            filename: path.join(logDir, 'error.log'), 
+            level: 'error',
             format: winston.format.combine(
-                winston.format.colorize(),
-                winston.format.simple(),
-                winston.format.printf(({ level, message, timestamp, stack }) => {
-                    if (stack) {
-                        return `${timestamp} ${level}: ${message}\n${stack}`;
-                    }
-                    return `${timestamp} ${level}: ${message}`;
-                })
+                winston.format.timestamp(),
+                winston.format.json()
             )
         }),
-        // Optional: Write to temporary files during local development (not on Vercel)
-        ...(process.env.NODE_ENV !== 'production' ? [
-            new DailyRotateFile({
-                filename: path.join('/tmp', 'stremio-addon-manager-%DATE%.log'), // Use /tmp for local
-                datePattern: 'YYYY-MM-DD',
-                maxSize: '20m',
-                maxFiles: '14d',
-                createSymlink: true,
-                symlinkName: 'current.log'
-            })
-        ] : [])
+        // Write all logs with level 'info' and below to combined.log
+        fileRotateTransport
     ]
 });
+
+// If we're not in production, also log to the console with colorized output
+if (process.env.NODE_ENV !== 'production') {
+    logger.add(new winston.transports.Console({
+        format: winston.format.combine(
+            winston.format.colorize(),
+            winston.format.simple(),
+            winston.format.printf(({ level, message, timestamp, stack }) => {
+                if (stack) {
+                    return `${timestamp} ${level}: ${message}\n${stack}`;
+                }
+                return `${timestamp} ${level}: ${message}`;
+            })
+        )
+    }));
+}
 
 // Create a stream object with a write function for Morgan
 logger.stream = {
