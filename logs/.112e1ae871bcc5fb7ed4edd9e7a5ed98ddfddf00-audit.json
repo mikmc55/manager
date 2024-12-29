@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "logs\\.112e1ae871bcc5fb7ed4edd9e7a5ed98ddfddf00-audit.json",
+    "files": [
+        {
+            "date": 1735502376428,
+            "name": "logs\\stremio-addon-manager-2024-12-29.log",
+            "hash": "a8a319ec6f3163f8c2f3d10badbb9dbc6f34c74edeb9aa1d8c9b85a52ed54dfb"
+        }
+    ],
+    "hashType": "sha256"
+}

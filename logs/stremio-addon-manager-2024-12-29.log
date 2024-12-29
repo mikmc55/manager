@@ -1,0 +1,37 @@
+{"level":"info","message":"Database exists","timestamp":"2024-12-29 19:59:36"}
+{"level":"info","message":"Users database exists","timestamp":"2024-12-29 19:59:36"}
+{"env":"development","level":"info","message":"Server started successfully","port":3000,"timestamp":"2024-12-29 19:59:36"}
+{"level":"info","message":"http://localhost:3000","timestamp":"2024-12-29 19:59:36"}
+{"level":"info","message":"Press Ctrl+C to stop the server","timestamp":"2024-12-29 19:59:36"}
+{"ip":"::1","isAuthenticated":false,"level":"debug","message":"Auth status check","stremioConnected":false,"timestamp":"2024-12-29 19:59:59"}
+{"ip":"::1","level":"debug","message":"Login attempt","timestamp":"2024-12-29 20:01:08","username":"admin"}
+{"ip":"::1","level":"info","message":"Successful admin login","timestamp":"2024-12-29 20:01:08","username":"admin"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/addons","timestamp":"2024-12-29 20:01:08"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/users","timestamp":"2024-12-29 20:01:08"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/addons","timestamp":"2024-12-29 20:01:08"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/users","timestamp":"2024-12-29 20:01:08"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/addons","timestamp":"2024-12-29 20:01:08"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/users","timestamp":"2024-12-29 20:01:08"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/users","timestamp":"2024-12-29 20:01:16"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"POST","path":"/api/users","timestamp":"2024-12-29 20:02:14"}
+{"email":"jl@mailnesia.com","level":"debug","message":"Adding new user","timestamp":"2024-12-29 20:02:14"}
+{"body":{"email":"jl@mailnesia.com","facebook":false,"password":"fanny","type":"Login"},"level":"debug","message":"Making Stremio API request to /login","timestamp":"2024-12-29 20:02:14"}
+{"data":{"result":{"authKey":"-xkygC0XvJa4QXSqOE3rwwd_jbY6Jl5OhTQlQPmIGAU=","user":{"_id":"668720ebbd1b482cc308bfc1","anonymous":false,"avatar":"","dateRegistered":"2024-07-04T22:23:39.116Z","email":"jl@mailnesia.com","fbId":"","fullname":"","gdpr_consent":{"from":"web","marketing":true,"privacy":true,"tos":true},"lang":"","lastModified":"2024-10-04T08:42:06.417Z","premium_expire":"0001-01-01T00:00:00Z","stremio_addons":"","taste":null,"trakt":{"access_token":"4238cfac18768a633f8d83a9baaad524feae7408bbee1c695454f4968bd602e0","created_at":1728031326,"expires_in":7889238,"refresh_token":"5c32b5d020422e4f0a4aa103de58403068689c5788b841ced5d1bbe5b65941e0"}}}},"level":"debug","message":"Stremio API response from /login","timestamp":"2024-12-29 20:02:15"}
+{"entriesCount":1,"level":"debug","message":"Users database updated successfully","timestamp":"2024-12-29 20:02:15"}
+{"email":"jl@mailnesia.com","level":"info","message":"User added successfully","timestamp":"2024-12-29 20:02:15"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/users","timestamp":"2024-12-29 20:02:18"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/addons","timestamp":"2024-12-29 20:02:18"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/users","timestamp":"2024-12-29 20:02:18"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/addons","timestamp":"2024-12-29 20:02:28"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/users","timestamp":"2024-12-29 20:02:39"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/addons","timestamp":"2024-12-29 20:02:39"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/addons","timestamp":"2024-12-29 20:03:38"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/users","timestamp":"2024-12-29 20:04:01"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/addons","timestamp":"2024-12-29 20:05:08"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/addons","timestamp":"2024-12-29 20:05:13"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/addons","timestamp":"2024-12-29 20:05:14"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/addons","timestamp":"2024-12-29 20:05:14"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/addons","timestamp":"2024-12-29 20:06:56"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/addons","timestamp":"2024-12-29 20:06:57"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/users","timestamp":"2024-12-29 20:07:02"}
+{"ip":"::1","level":"debug","message":"Auth check passed","method":"GET","path":"/api/addons","timestamp":"2024-12-29 20:07:15"}

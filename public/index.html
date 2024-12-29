@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stremio Addon Manager</title>
+    <!-- React and ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Login Section -->
+    <div id="loginForm" class="flex items-center justify-center min-h-screen bg-gray-100">
+        <div class="form-container w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-6 text-center">Login to Addon Manager</h2>
+            <form id="loginFormElement" class="space-y-4">
+                <div class="form-group">
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username:</label>
+                    <input type="text" id="username" required 
+                           class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password:</label>
+                    <input type="password" id="password" required
+                           class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div class="button-group">
+                    <button type="submit" 
+                            class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Login
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Root for React Content -->
+    <div id="root" class="hidden"></div>
+
+    <!-- Main Content Sections -->
+    <div id="mainContent" class="hidden">
+        <!-- Dashboard Section -->
+        <div id="dashboardSection" class="section-content">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-medium">Total Users</h3>
+                        <i data-lucide="users" class="w-6 h-6 text-blue-500"></i>
+                    </div>
+                    <p class="text-3xl font-bold mt-2" id="totalUsers">0</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-medium">Active Addons</h3>
+                        <i data-lucide="package" class="w-6 h-6 text-green-500"></i>
+                    </div>
+                    <p class="text-3xl font-bold mt-2" id="activeAddons">0</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-medium">Last Sync</h3>
+                        <i data-lucide="clock" class="w-6 h-6 text-purple-500"></i>
+                    </div>
+                    <p class="text-lg mt-2" id="lastSync">Never</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register Section -->
+        <div id="registerSection" class="section-content hidden">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-xl font-semibold mb-4">Register New Stremio Account</h2>
+                <form id="stremioRegisterForm" class="space-y-4">
+                    <div class="form-group">
+                        <label for="stremioRegEmail" class="block text-sm font-medium text-gray-700">Email:</label>
+                        <input type="email" id="stremioRegEmail" required
+                               class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md">
+                    </div>
+                    <div class="form-group">
+                        <label for="stremioRegPassword" class="block text-sm font-medium text-gray-700">Password:</label>
+                        <input type="password" id="stremioRegPassword" required
+                               class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md">
+                    </div>
+                    <div class="form-group flex items-center">
+                        <input type="checkbox" id="gdprConsent" required class="h-4 w-4 text-blue-600 rounded">
+                        <label for="gdprConsent" class="ml-2 block text-sm text-gray-700">
+                            I agree to the Terms of Service and Privacy Policy
+                        </label>
+                    </div>
+                    <button type="submit" 
+                            class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700">
+                        Register New Stremio Account
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Addons Section -->
+        <div id="addonsSection" class="section-content hidden">
+            <!-- Add New Addon Form -->
+            <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                <h2 class="text-xl font-semibold mb-4">Add New Addon</h2>
+                <form id="addonForm" class="space-y-4">
+                    <div class="form-group">
+                        <label for="manifestUrl" class="block text-sm font-medium text-gray-700">Manifest URL:</label>
+                        <input type="url" id="manifestUrl" required 
+                               placeholder="https://example.com/manifest.json"
+                               class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md">
+                    </div>
+                    <button type="submit" 
+                            class="py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700">
+                        Add Addon
+                    </button>
+                </form>
+            </div>
+
+            <!-- Installed Addons -->
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-semibold">Installed Addons</h2>
+                    <div class="flex gap-2">
+                        <button onclick="updateAddonList()" class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                            <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>
+                            Refresh
+                        </button>
+                        <button onclick="exportAddons()" class="flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                            <i data-lucide="download" class="w-4 h-4 mr-2"></i>
+                            Export
+                        </button>
+                        <input type="file" id="importFile" accept=".json" class="hidden">
+                        <button onclick="document.getElementById('importFile').click()" 
+                                class="flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
+                            <i data-lucide="upload" class="w-4 h-4 mr-2"></i>
+                            Import
+                        </button>
+                    </div>
+                </div>
+                <div id="loadingState" class="loading hidden text-center py-8">
+                    <i data-lucide="loader" class="w-8 h-8 mx-auto animate-spin text-blue-600"></i>
+                    <p class="mt-2 text-gray-600">Loading addons...</p>
+                </div>
+                <div id="addons" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            </div>
+        </div>
+
+        <!-- Install Section -->
+        <div id="installSection" class="section-content hidden">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-xl font-semibold mb-4">Install and Sync</h2>
+                <div class="text-center py-8">
+                    <i data-lucide="download-cloud" class="w-16 h-16 mx-auto text-blue-600 mb-4"></i>
+                    <h3 class="text-lg font-medium mb-2">Ready to Install</h3>
+                    <p class="text-gray-600 mb-6">Click the button below to install the addon collection in Stremio</p>
+                    <a href="stremio://127.0.0.1:3000/catalog.json" 
+                       class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                        <i data-lucide="download" class="w-5 h-5 mr-2"></i>
+                        Install in Stremio
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users Section -->
+        <div id="usersSection" class="section-content hidden">
+            <!-- Add User Form -->
+            <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                <h2 class="text-xl font-semibold mb-4">Add New User</h2>
+                <form id="userForm" class="space-y-4">
+                    <div class="form-group">
+                        <label for="userEmail" class="block text-sm font-medium text-gray-700">Stremio Email:</label>
+                        <input type="email" id="userEmail" required
+                               class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md">
+                    </div>
+                    <div class="form-group">
+                        <label for="userPassword" class="block text-sm font-medium text-gray-700">Stremio Password:</label>
+                        <input type="password" id="userPassword" required
+                               class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md">
+                    </div>
+                    <button type="submit" 
+                            class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700">
+                        Add User
+                    </button>
+                </form>
+            </div>
+
+            <!-- Users List -->
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-semibold">Registered Users</h2>
+                    <div class="flex gap-2">
+                        <button onclick="syncAllUsersWithProgress()" 
+                                class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                            <i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>
+                            Sync All Users
+                        </button>
+                        <button onclick="updateUsersList()"
+                                class="flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
+                            <i data-lucide="refresh" class="w-4 h-4 mr-2"></i>
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+                <div id="syncProgress" class="hidden">
+                    <div class="sync-status text-sm text-gray-600 mb-2"></div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="progress-fill bg-blue-600 h-2 rounded-full transition-all duration-300"></div>
+                    </div>
+                </div>
+                <div id="loadingUsers" class="loading hidden text-center py-8">
+                    <i data-lucide="loader" class="w-8 h-8 mx-auto animate-spin text-blue-600"></i>
+                    <p class="mt-2 text-gray-600">Loading users...</p>
+                </div>
+                <div id="usersList" class="divide-y"></div>
+            </div>
+        </div>
+
+        <!-- Settings Section -->
+        <div id="settingsSection" class="section-content hidden">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-xl font-semibold mb-6">Settings</h2>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center py-4 border-t">
+                        <div>
+                            <h3 class="text-lg font-medium">Account</h3>
+                            <p class="text-sm text-gray-500">Manage your account settings</p>
+                        </div>
+                        <button onclick="handleLogout()" 
+                                class="flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+                            <i data-lucide="log-out" class="w-4 h-4 mr-2"></i>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/SidebarLayout.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
