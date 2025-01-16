@@ -72,8 +72,8 @@ async function fetchProtectedAddons() {
 let PROTECTED_ADDONS = [LOCAL_ADDON];
 // Configuration
 const config = {
-    ADMIN_USERNAME: "admin",
-    ADMIN_PASSWORD: "password123",
+    ADMIN_USERNAME: "hems",
+    ADMIN_PASSWORD: "lydog",
     DB_PATH: path.join(__dirname, "database.json"),
     USERS_DB_PATH: path.join(__dirname, "users.json"),
     SESSION_SECRET: "bhdsaububsb387444nxkj"
